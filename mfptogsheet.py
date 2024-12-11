@@ -11,12 +11,11 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
-
 def mfp_to_csv():
     client = myfitnesspal.Client(browser_cookie3.chrome())
     end_date = date(date.today().year, 12, 31)
     end_date2 = date.today()
-    start_date = date(date.today().year, 8, 1)
+    start_date = date(date.today().year, 12, 10)
     delta = timedelta(days=1)
     mfp_date = []
     mfp_calories = []
@@ -41,7 +40,7 @@ def mfp_to_csv():
         mfp_fats.append(mfp_time.totals.get('fat',0))   
         mfp_carbs.append(mfp_time.totals.get('carbohydrates',0))
         mfp_protein.append(mfp_time.totals.get('protein',0))
-
+    
         current_date += delta
     
     data = {
@@ -54,19 +53,19 @@ def mfp_to_csv():
         
     }
     
-    with open('mfp_csv.csv', 'r+', newline = '') as f:
+    with open('/Users/shreyasnatesan/Documents/python/mfp_csv.csv', 'r+', newline = '') as f:
         writer = csv.writer(f)
         reader = csv.reader(f)
         headers = ["Date", 'Calories', 'Carbohydrates', 'Fat', 'Protein']
         df = pd.DataFrame(data)
-        df.to_csv("mfp_csv.csv", index = False)
+        df.to_csv("/Users/shreyasnatesan/Documents/python/mfp_csv.csv", index = False)
 
 # Modify these scopes for read/write access
     SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 
     # The ID and range of the spreadsheet
     SPREADSHEET_ID = "1YcpbP-R90caUwBJyyj6ACdYR7p8bmep5tYu7sYSPcJs"
-    RANGE_NAME = "Current Overall Protocol 2024!B216"  # Change this to the range where you want to write data
+    RANGE_NAME = "Current Overall Protocol 2024!B276"  # Change this to the range where you want to write data
 
     def main():
         """Shows basic usage of the Sheets API.
@@ -82,7 +81,7 @@ def mfp_to_csv():
                 creds.refresh(Request())
             else:
                 flow = InstalledAppFlow.from_client_secrets_file(
-                    "credentials.json", SCOPES)
+                    "/Users/shreyasnatesan/Documents/python/credentials.json", SCOPES)
                 creds = flow.run_local_server(port=0)
             # Save the credentials for future runs
             with open("token.json", "w") as token:
