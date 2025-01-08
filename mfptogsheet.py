@@ -13,9 +13,9 @@ from googleapiclient.errors import HttpError
 
 def mfp_to_csv():
     client = myfitnesspal.Client(browser_cookie3.chrome())
-    end_date = date(date.today().year, 12, 31)
+    end_date = date(date.today().year, 1, 20)
     end_date2 = date.today()
-    start_date = date(date.today().year, 12, 10)
+    start_date = date(date.today().year, 1, 1)
     delta = timedelta(days=1)
     mfp_date = []
     mfp_calories = []
@@ -65,7 +65,7 @@ def mfp_to_csv():
 
     # The ID and range of the spreadsheet
     SPREADSHEET_ID = "1YcpbP-R90caUwBJyyj6ACdYR7p8bmep5tYu7sYSPcJs"
-    RANGE_NAME = "Current Overall Protocol 2024!B276"  # Change this to the range where you want to write data
+    RANGE_NAME = "Current Overall Protocol 2025!B2"  # Change this to the range where you want to write data
 
     def main():
         """Shows basic usage of the Sheets API.
@@ -116,9 +116,3 @@ def mfp_to_csv():
 
         
 mfp_to_csv()
-
-
-
-
-
-
